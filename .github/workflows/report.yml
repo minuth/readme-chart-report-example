@@ -1,10 +1,20 @@
-name: 'report'
-on: # rebuild any PRs and main branch changes
+name: 'generate chart report'
+on:
   issues:
-
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
 jobs:
-  get-report: # make sure the action works on a clean machine without building
+  generate-chart:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: minuth/report-action@main
+        with:
+          ref: main
+          token: ${{secrets.TOKEN}}
+      - uses: minuth/quickchart-report@main
+        with:
+          token: ${{secrets.TOKEN}}
