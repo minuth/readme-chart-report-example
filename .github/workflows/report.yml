@@ -1,12 +1,14 @@
-name: 'generate chart report'
+name: Quick Chart Report
 on:
   issues:
+    types: [opened, closed]
   pull_request:
-    branches:
-      - main
+    types: [opened, closed]
+    branches: [main]
   push:
-    branches:
-      - main
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * *'
 jobs:
   generate-chart:
     runs-on: ubuntu-latest
